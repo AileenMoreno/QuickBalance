@@ -19,6 +19,19 @@ It all started with an interview ...
 * Realm 10.20.0
 * Deployment Target iOS 13.2
 
+## What things did I use?
+
+- MVC
+- UIViewController
+- UIView, UIImageView, UILabel
+- UITableView, UIPageViewController
+- UIActivityIndicator, UIProgressView
+- UIAlertController, ActionSheet
+- UIStackView
+- Constraints/Autolayout
+- Delegation, Protocols
+- Realm (add, delete, query)
+
 ## Screenshots
 
 | Launch | Home | Empty | Add | Delete |
