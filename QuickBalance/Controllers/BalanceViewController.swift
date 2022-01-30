@@ -42,10 +42,10 @@ class BalanceViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        DispatchQueue.main.async {
+       /* DispatchQueue.main.async {
             self.tableView.tableHeaderView?.layoutIfNeeded()
             self.tableView.tableHeaderView = self.tableView.tableHeaderView
-          }
+        }*/
     }
     
     // MARK: Private Functions

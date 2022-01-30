@@ -22,6 +22,8 @@ class AddTransactionViewController: UIViewController {
     
     weak var delegate: AddTransactionDelegate?
     
+    private var didAddTransaction = false
+    
     // MARK: Overrides
 
     override func viewDidLoad() {
@@ -49,11 +51,11 @@ class AddTransactionViewController: UIViewController {
         var alertMessage = Constants.Error.alertMessage
         
         if result {
-            alertTitle = Constants.alertTitle
-            alertMessage = Constants.alertMessage
+            alertTitle = Constants.Alert.title
+            alertMessage = Constants.Alert.message
         }
         
-        let action = UIAlertAction(title: Constants.okey,
+        let action = UIAlertAction(title: Constants.Alert.okey,
                                    style: .default) { (action) in
             self.typeSegmentControl.selectedSegmentIndex = 0
             self.descriptionTextField.text = ""
@@ -72,7 +74,9 @@ class AddTransactionViewController: UIViewController {
     
     @IBAction func handleCloseButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: {
-            self.delegate?.didAddTransaction()
+            if self.didAddTransaction {
+                self.delegate?.didAddTransaction()
+            }
         })
     }
     
@@ -86,7 +90,7 @@ class AddTransactionViewController: UIViewController {
         let result = TransactionManager.add(type: type.rawValue,
                                             description: description,
                                             amount: amount)
-        
+        didAddTransaction = result
         showUpdateTransactionMessage(result: result)
     }
 }

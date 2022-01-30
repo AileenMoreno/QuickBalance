@@ -13,9 +13,12 @@ struct Constants {
     static let expenses = "Expenses"
     static let incomes = "Incomes"
     static let balance = "Balance"
-    static let okey = "OK."
-    static let alertTitle = "HEY!"
-    static let alertMessage = "Your data was succesfully saved!."
+
+    struct Alert {
+        static let okey = "OK."
+        static let title = "HEY!"
+        static let message = "Your data was succesfully saved!."
+    }
     
     struct ActionSheet {
         static let cancel = "Cancel"
