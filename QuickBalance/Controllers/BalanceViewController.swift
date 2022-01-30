@@ -180,9 +180,7 @@ class BalanceViewController: UIViewController {
         }
         
         let cancelAction = UIAlertAction(title: Constants.ActionSheet.cancel,
-                                         style: .cancel) { (action) in
-            // Respond to user selection of the action
-        }
+                                         style: .cancel)
         
         let alert = UIAlertController(title: Constants.ActionSheet.title,
                                       message: Constants.ActionSheet.message,

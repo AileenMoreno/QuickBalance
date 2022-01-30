@@ -40,24 +40,32 @@ class TransactionManager {
                 realm.delete(item)
                 try realm.commitWrite()
             }
-        } catch _ as NSError {
-            print("explode")
+        } catch let error as NSError {
+            print("There was an error loading realm: \(error.localizedDescription)")
         }
     }
     
     class func loadAllGroupedByDate() -> [[Transaction]] {
-        let query = try! Realm().objects(Transaction.self).sorted(byKeyPath: "date",
-                                                                  ascending: false)
         
-        return query
-            .map{ $0.date } // List of dates
-            .reduce([]) { dates, date in
-                return dates.last == date ? dates : dates + [date]
-            } // List of dates with no repetition
-            .map({ section -> ([Transaction]) in
-                let result = query.filter{ $0.date == section }
-                return Array(result)
-            }) //grouped list of transactions
+        do {
+            let realm = try Realm()
+            let query = realm.objects(Transaction.self).sorted(byKeyPath: "date",
+                                                               ascending: false)
+            return query
+                .map{ $0.date } // List of dates
+                .reduce([]) { dates, date in
+                    return dates.last == date ? dates : dates + [date]
+                } // List of dates with no repetition
+                .map({ section -> ([Transaction]) in
+                    let result = query.filter{ $0.date == section }
+                    return Array(result)
+                }) //grouped list of transactions
+            
+        } catch let error as NSError {
+            print("There was an error loading realm: \(error.localizedDescription)")
+        }
+        
+        return []
     }
     
     class func calculateBalance(from transactions: [[Transaction]]) -> Balance {
