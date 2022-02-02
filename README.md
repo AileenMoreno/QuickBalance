@@ -30,6 +30,7 @@ It all started with an interview ...
 - UIStackView
 - Constraints/Autolayout
 - Delegation, Protocols
+- Higher Order Functions 
 - Realm (add, delete, query)
 
 ## Screenshots
